@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!--mvn mybatis-generator:generate -Dmybatis.generator.configurationFile=src/main/resources/generatorConfig.xml-->
+<generatorConfiguration>
+    <!--指定外部配置文件的位置-->
+    <!--<properties resource="profiles/Test/application-Test.properties"/>-->
+    <!--数据库驱动-->
+    <!--mac地址示范例/ cobarc_shard3/sunshanshan/work/mysql/mysql-connector-java/6.0.5/mysql-connector-java-6.0.5.jar-->
+    <!--  / cobarc_shard3/ting/Desktop/tools/mysql-connector-java-5.1.28.jar-->
+    <classPathEntry location="D:/repository/mysql/mysql-connector-java/5.1.40/mysql-connector-java-5.1.40.jar"/>
+    <!--MyBatis3Simple不生成与Example有关的内容，defaultModelType设置为flat-->
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!--当表名或者字段名为SQL关键字时，自动添加分隔符，并指定前后分隔符为[`]-->
+        <property name="autoDelimitKeywords" value="true"></property>
+        <property name="beginningDelimiter" value="`"></property>
+        <property name="endingDelimiter" value="`"></property>
+        <!--阻止Generator使用默认的生成注释-->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/hemabatch"
+                        userId="qauser" password="Qauser123">
+        </jdbcConnection>
+        <!--指定JDBC类型和Java类型如何转换-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成Model类存放位置-->
+        <javaModelGenerator targetPackage="com.dwd.test.hema.domain" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mybatis" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成Dao类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.dwd.test.hema.service"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <table tableName="hema_batch" domainObjectName="hemaBatch" />
+        <!--<table tableName="rider_aggregate_info" domainObjectName="RiderAggregateInfo" />-->
+        <!--<table tableName="use_result" domainObjectName="UseResult" />-->
+        <!--<table tableName="credit_result" domainObjectName="CreditResult" />-->
+    </context>
+</generatorConfiguration>

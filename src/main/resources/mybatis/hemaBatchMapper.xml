@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwd.test.hema.mapper.HemaBatchMapper">
+    <resultMap id="BaseResultMap" type="com.dwd.test.hema.domain.HemaBatchDTO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="batch_id" jdbcType="VARCHAR" property="batchId"/>
+        <result column="platform_id" jdbcType="BIGINT" property="platformId"/>
+        <result column="rider_id" jdbcType="VARCHAR" property="riderId"/>
+        <result column="is_active" jdbcType="VARCHAR" property="isActive"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+    </resultMap>
+    <select id="getBatchIdByPlatformId" parameterType="String" resultMap="BaseResultMap">
+        SELECT * FROM hema_batch where platform_id=#{platformId} and is_active=0;
+    </select>
+</mapper>
